@@ -15,9 +15,9 @@
             <property name="hibernate.c3p0.max_size" value="20"/>
             <property name="hibernate.c3p0.acquire_increment" value="5"/>
             <property name="hibernate.c3p0.timeout" value="1800"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+<!--            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+<!--            <property name="hibernate.show_sql" value="true"/>-->
+<!--            <property name="hibernate.format_sql" value="true"/>-->
             <!--            <property name="hibernate.connection.autocommit" value="true"/>-->
             <!---->
             <!--            <property name="tomee.jpa.factory.lazy" value="true"/>-->
