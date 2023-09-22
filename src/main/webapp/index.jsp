@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    <p style="font-family: 'B Titr'">قسمت اصلی سایت</p>
+    <p style="font-family: 'B Yekan'">قسمت اصلی سایت</p>
 <button class="btn btn-primary" onclick="fet()"><i class="fa fa-remove"></i> Test</button>
 <button onclick="wsConnect()">WebSocket</button>
 </div>
