@@ -13,35 +13,12 @@ import java.util.Map;
 
 public class CrudRepository<T extends Base, I> implements AutoCloseable {
     private EntityManager entityManager;
-//    private CriteriaBuilder criteriaBuilder;
-//    private CriteriaQuery<T> criteriaQuery;
-//    private Root<T> root;
-//    private TypedQuery<T> query;
+
 
     public CrudRepository() {
         entityManager= JPA.getJpa().getEntityManager();
     }
 
-//    public CriteriaBuilder getCriteriaBuilder() {
-//        criteriaBuilder = entityManager.getCriteriaBuilder();
-//        return criteriaBuilder;
-//    }
-//
-//    public CriteriaQuery<T> getCriteriaQuery(Class tClass) {
-//        criteriaQuery = criteriaBuilder.createQuery(tClass);
-//        return criteriaQuery;
-//    }
-//
-//    public Root<T> getRoot(Class tClass) {
-//        root = criteriaQuery.from(tClass);
-//        criteriaQuery.select(root);
-//        return root;
-//    }
-//
-//    public TypedQuery<T> getQuery() {
-//        query = entityManager.createQuery(criteriaQuery);
-//        return query;
-//    }
 
     public T insert(T t) {
         EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -89,18 +66,18 @@ public class CrudRepository<T extends Base, I> implements AutoCloseable {
         return tList;
     }
 
-//    public List<T> selectAll(Class<T> tClass, int pageNumber, int pageSize) {
-//        criteriaBuilder = entityManager.getCriteriaBuilder();
-//        criteriaQuery = criteriaBuilder.createQuery(tClass);
-//        root = criteriaQuery.from(tClass);
-//        criteriaQuery.select(root);
-//        query = entityManager.createQuery(criteriaQuery);
-//
-//        int first = (pageNumber-1) * pageSize  + 1;
-//        query.setFirstResult(first);
-//        query.setMaxResults(pageSize);
-//        return query.getResultList();
-//    }
+    public List<T> selectAll(Class<T> tClass, int pageNumber, int pageSize) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(tClass);
+        Root<T> root = criteriaQuery.from(tClass);
+        criteriaQuery.select(root);
+        TypedQuery<T> query = entityManager.createQuery(criteriaQuery);
+
+        int first = (pageNumber-1) * pageSize  + 1;
+        query.setFirstResult(first);
+        query.setMaxResults(pageSize);
+        return query.getResultList();
+    }
 
 
 
@@ -126,12 +103,12 @@ public class CrudRepository<T extends Base, I> implements AutoCloseable {
         return tList.get(0);
     }
 
-//    public long getRecordCount(Class tClass){
-//        criteriaBuilder = entityManager.getCriteriaBuilder();
-//        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
-//        countQuery.select(criteriaBuilder.count(countQuery.from(tClass)));
-//        return entityManager.createQuery(countQuery).getSingleResult();
-//    }
+    public long getRecordCount(Class tClass){
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+        countQuery.select(criteriaBuilder.count(countQuery.from(tClass)));
+        return entityManager.createQuery(countQuery).getSingleResult();
+    }
 
     @Override
     public void close() throws Exception {

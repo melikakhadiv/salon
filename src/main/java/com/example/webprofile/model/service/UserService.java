@@ -74,17 +74,17 @@ public class UserService implements ServiceImpl<User, Long> {
         }
     }
 
-//    @Override
-//    public List<User> findAllPaging(int pageNumber, int pageSize) throws Exception {
-//        try (CrudRepository<User, Long> repository = new CrudRepository<>()) {
-//            List<User> userList = repository.selectAll(User.class, pageNumber, pageSize);
-//
-//            if (userList.size() == 0) {
-//                throw new NoContentException("No User Found");
-//            }
-//            return userList;
-//        }
-//    }
+    @Override
+    public List<User> findAllPaging(int pageNumber, int pageSize) throws Exception {
+        try (CrudRepository<User, Long> repository = new CrudRepository<>()) {
+            List<User> userList = repository.selectAll(User.class, pageNumber, pageSize);
+
+            if (userList.size() == 0) {
+                throw new NoContentException("No User Found");
+            }
+            return userList;
+        }
+    }
 
     @Override
     public User findById(Long id) throws Exception {
@@ -98,12 +98,12 @@ public class UserService implements ServiceImpl<User, Long> {
         }
     }
 
-//    @Override
-//    public Long getRecordCount() throws Exception {
-//        try (CrudRepository<User, Integer> repository = new CrudRepository<User, Integer>()) {
-//            return repository.getRecordCount(Group.class);
-//        }
-//    }
+    @Override
+    public Long getRecordCount() throws Exception {
+        try (CrudRepository<User, Integer> repository = new CrudRepository<User, Integer>()) {
+            return repository.getRecordCount(Group.class);
+        }
+    }
 
     public User findByUserName(String userName) throws Exception {
         try (CrudRepository<User, Long> repository = new CrudRepository<>()) {

@@ -58,17 +58,17 @@ public class GroupService implements ServiceImpl<Group, Integer> {
         }
     }
 
-//    @Override
-//    public List<Group> findAllPaging(int pageNumber, int pageSize) throws Exception {
-//        try (CrudRepository<Group, Long> repository = new CrudRepository<>()) {
-//            List<Group> groupList = repository.selectAll(Group.class, pageNumber, pageSize);
-//
-//            if (groupList.size() == 0) {
-//                throw new NoContentException("No Person Found");
-//            }
-//            return groupList;
-//        }
-//    }
+    @Override
+    public List<Group> findAllPaging(int pageNumber, int pageSize) throws Exception {
+        try (CrudRepository<Group, Long> repository = new CrudRepository<>()) {
+            List<Group> groupList = repository.selectAll(Group.class, pageNumber, pageSize);
+
+            if (groupList.size() == 0) {
+                throw new NoContentException("No Person Found");
+            }
+            return groupList;
+        }
+    }
 
     @Override
     public Group findById(Integer id) throws Exception {
@@ -81,12 +81,12 @@ public class GroupService implements ServiceImpl<Group, Integer> {
         }
     }
 
-//    @Override
-//    public Long getRecordCount() throws Exception {
-//        try (CrudRepository<Group, Integer> repository = new CrudRepository<Group, Integer>()) {
-//            return repository.getRecordCount(Group.class);
-//        }
-//    }
+    @Override
+    public Long getRecordCount() throws Exception {
+        try (CrudRepository<Group, Integer> repository = new CrudRepository<Group, Integer>()) {
+            return repository.getRecordCount(Group.class);
+        }
+    }
 
     public List<Group> findByParentId(Integer parentId) throws Exception {
         try (CrudRepository<Group, Integer> repository = new CrudRepository<Group, Integer>()) {
