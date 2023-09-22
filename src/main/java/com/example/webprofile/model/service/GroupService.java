@@ -2,6 +2,7 @@ package com.example.webprofile.model.service;
 
 import com.example.webprofile.controller.exception.NoContentException;
 import com.example.webprofile.model.entity.Group;
+import com.example.webprofile.model.entity.Person;
 import com.example.webprofile.model.repository.CrudRepository;
 import com.example.webprofile.model.service.impl.ServiceImpl;
 import jakarta.inject.Inject;
@@ -57,6 +58,18 @@ public class GroupService implements ServiceImpl<Group, Integer> {
         }
     }
 
+//    @Override
+//    public List<Group> findAllPaging(int pageNumber, int pageSize) throws Exception {
+//        try (CrudRepository<Group, Long> repository = new CrudRepository<>()) {
+//            List<Group> groupList = repository.selectAll(Group.class, pageNumber, pageSize);
+//
+//            if (groupList.size() == 0) {
+//                throw new NoContentException("No Person Found");
+//            }
+//            return groupList;
+//        }
+//    }
+
     @Override
     public Group findById(Integer id) throws Exception {
         try (CrudRepository<Group, Integer> repository = new CrudRepository<Group, Integer>()) {
@@ -67,6 +80,13 @@ public class GroupService implements ServiceImpl<Group, Integer> {
             return group;
         }
     }
+
+//    @Override
+//    public Long getRecordCount() throws Exception {
+//        try (CrudRepository<Group, Integer> repository = new CrudRepository<Group, Integer>()) {
+//            return repository.getRecordCount(Group.class);
+//        }
+//    }
 
     public List<Group> findByParentId(Integer parentId) throws Exception {
         try (CrudRepository<Group, Integer> repository = new CrudRepository<Group, Integer>()) {

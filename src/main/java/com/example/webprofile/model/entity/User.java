@@ -31,4 +31,10 @@ public class User extends Base{
     @Column(name="u_password",length = 20)
     @Pattern(regexp = "^[A-Za-z]{8,30}$", message = "Invalid Password")
     private String password;
+
+    @OneToOne
+    private Person person;
+
+    @OneToOne
+    private Role role;
 }

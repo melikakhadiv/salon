@@ -14,33 +14,42 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-//        System.out.println(GroupService.getService().save(Group.builder().title("Root1").build()));
-//        System.out.println(GroupService.getService().save(Group.builder().title("Root2").build()));
-//        System.out.println(GroupService.getService().save(Group.builder().title("Root3").build()));
+//        GroupService.getService().remove(1);
+        Group root1 = Group.builder().title("Root1").build();
+        System.out.println(GroupService.getService().save(root1));
 
+        Group root2 = Group.builder().title("Root2").build();
+        System.out.println(GroupService.getService().save(root2));
 
+        Group sub1_1 = Group.builder().title("Sub1-1").parent(root1).build();
+        System.out.println(GroupService.getService().save(sub1_1));
 
-        EntityManager entityManager = JPA.getJpa().getEntityManager();
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);
-        Root<Group> root = criteriaQuery.from(Group.class);
+        Group sub1_2 = Group.builder().title("Sub1-2").parent(root1).build();
+        System.out.println(GroupService.getService().save(sub1_2));
 
+        Group sub2 = Group.builder().title("Sub2").parent(root2).build();
+        System.out.println(GroupService.getService().save(sub2));
 
-        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
-        countQuery.select(criteriaBuilder.count(countQuery.from(Group.class)));
-        Long count = entityManager.createQuery(countQuery).getSingleResult();
+        Group sub22 = Group.builder().title("Sub22").parent(sub2).build();
+        System.out.println(GroupService.getService().save(sub22));
+//
+//        System.out.println(GroupService.getService().findByParentId(1));
+//        System.out.println(GroupService.getService().findAllPaging(1,2));
+//        System.out.println(GroupService.getService().findAllPaging(2,2));
+//        System.out.println(GroupService.getService().findAllPaging(3,2));
 
-        System.out.println(count);
+//        EntityManager entityManager = JPA.getJpa().getEntityManager();
+//        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);
+//        Root<Group> root = criteriaQuery.from(Group.class);
+//
+//        criteriaQuery.select(root);
 
-        criteriaQuery.select(root);
-
-
-//        criteriaQuery.where(criteriaBuilder.gt(root.get("id"),2));
-
+//        criteriaQuery.where(criteriaBuilder.like(root.get("title"),"a%"));
 //        criteriaQuery.groupBy().having();
 //        criteriaQuery.where(criteriaBuilder.lt(root.get("id"),140));
 //        criteriaQuery.where(criteriaBuilder.like(root.get("title"),"%1%"));
-//        criteriaQuery.where(criteriaBuilder.between(root.get("id"),2,3));
+//        criteriaQuery.where(criteriaBuilder.between(root.get("id"),2,4));
 //        criteriaQuery.where(criteriaBuilder.equal(root.get("id"),2));
 //        predicate[1] = criteriaBuilder.in(root.get("id").in(1,3));
 
@@ -49,23 +58,15 @@ public class Test {
 //        predicate[0] = criteriaBuilder.like(root.get("title"),"%1%");
 //        predicate[1] = criteriaBuilder.gt(root.get("id"),100);
 //        criteriaQuery.where(criteriaBuilder.or(predicate));
-
-//    criteriaQuery.p
-
-
-        criteriaQuery.orderBy(criteriaBuilder.asc(root.get("title")));
-        criteriaQuery.orderBy(criteriaBuilder.desc(root.get("title")));
-
-
-        TypedQuery<Group> groupTypedQuery = entityManager.createQuery(criteriaQuery);
-
-        groupTypedQuery.setFirstResult(3);
-        groupTypedQuery.setMaxResults(2);
-
-//        System.out.println(groupTypedQuery.ge);
-
-        List<Group> groupList = groupTypedQuery.getResultList();
-
-        System.out.println(groupList);
+//
+//
+//        criteriaQuery.orderBy(criteriaBuilder.asc(root.get("title")));
+//        criteriaQuery.orderBy(criteriaBuilder.desc(root.get("title")));
+//
+//
+//        TypedQuery<Group> groupTypedQuery = entityManager.createQuery(criteriaQuery);
+//
+//        List<Group> groupList = groupTypedQuery.getResultList();
+//        System.out.println(groupList);
     }
 }

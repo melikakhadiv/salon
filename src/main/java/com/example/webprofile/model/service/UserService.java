@@ -3,6 +3,7 @@ package com.example.webprofile.model.service;
 import com.example.webprofile.controller.exception.AccessDeniedException;
 import com.example.webprofile.controller.exception.DuplicateDataException;
 import com.example.webprofile.controller.exception.NoContentException;
+import com.example.webprofile.model.entity.Group;
 import com.example.webprofile.model.entity.User;
 import com.example.webprofile.model.repository.CrudRepository;
 import com.example.webprofile.model.service.impl.ServiceImpl;
@@ -73,6 +74,18 @@ public class UserService implements ServiceImpl<User, Long> {
         }
     }
 
+//    @Override
+//    public List<User> findAllPaging(int pageNumber, int pageSize) throws Exception {
+//        try (CrudRepository<User, Long> repository = new CrudRepository<>()) {
+//            List<User> userList = repository.selectAll(User.class, pageNumber, pageSize);
+//
+//            if (userList.size() == 0) {
+//                throw new NoContentException("No User Found");
+//            }
+//            return userList;
+//        }
+//    }
+
     @Override
     public User findById(Long id) throws Exception {
         try (CrudRepository<User, Long> repository = new CrudRepository<>()) {
@@ -84,6 +97,13 @@ public class UserService implements ServiceImpl<User, Long> {
             return user;
         }
     }
+
+//    @Override
+//    public Long getRecordCount() throws Exception {
+//        try (CrudRepository<User, Integer> repository = new CrudRepository<User, Integer>()) {
+//            return repository.getRecordCount(Group.class);
+//        }
+//    }
 
     public User findByUserName(String userName) throws Exception {
         try (CrudRepository<User, Long> repository = new CrudRepository<>()) {

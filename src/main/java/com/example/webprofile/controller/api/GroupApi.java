@@ -21,6 +21,27 @@ public class GroupApi {
         }
     }
 
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response edit(Group group) {
+        try {
+            return Response.ok().entity(GroupService.getService().edit(group)).build();
+        } catch (Exception e) {
+            return Response.status(204).entity("{\"message\": \"" + e.getMessage() + "\"}").build();
+        }
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response remove(@PathParam("id") Integer id) {
+        try {
+            return Response.ok().entity(GroupService.getService().remove(id)).build();
+        } catch (Exception e) {
+            return Response.status(204).entity("{\"message\": \"" + e.getMessage() + "\"}").build();
+        }
+    }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
