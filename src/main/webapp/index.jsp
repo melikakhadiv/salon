@@ -3,10 +3,14 @@
 <html>
 <head>
     <title>JSP</title>
+    <jsp:include page="css-import.jsp"></jsp:include>
 </head>
 <body>
-<button onclick="fet()">Test</button>
+<div class="container-fluid">
+    <p style="font-family: 'B Titr'">قسمت اصلی سایت</p>
+<button class="btn btn-primary" onclick="fet()"><i class="fa fa-remove"></i> Test</button>
 <button onclick="wsConnect()">WebSocket</button>
+</div>
 <script>
     async function fet() {
         const resp = await fetch("/rest/group", {
@@ -70,5 +74,6 @@
         // webSocket.send(JSON.stringify(payload));
     }
 </script>
+<jsp:include page="js-import.jsp"></jsp:include>
 </body>
 </html>
