@@ -1,4 +1,4 @@
-# WebProfile
+# Salon
 
 TomEE 9
 Jdk 11
